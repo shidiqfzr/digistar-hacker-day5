@@ -26,13 +26,13 @@ Each todo item has the following properties:
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/todo-app.git
+    git clone https://github.com/yourusername/digistar-hacker-day3.git
     ```
 
 2. Navigate into the project directory:
 
     ```bash
-    cd todo-app
+    cd digistar-hacker-day3
     ```
 
 3. Install dependencies:
