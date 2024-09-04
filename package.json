@@ -1,0 +1,14 @@
+{
+  "name": "hacker-backend-day3",
+  "version": "1.0.0",
+  "description": "Task for Hacker Backend Day 3 - Implement routing and a RESTful API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "achmad shidiq nur fazar",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
