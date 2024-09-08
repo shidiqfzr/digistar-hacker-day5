@@ -1,12 +1,12 @@
 const Todo = require('../models/todoModel');
 
-// Get all todos
+// Get all todos for the logged-in user
 const getTodos = async (req, res) => {
     try {
-        const todos = await Todo.find();
+        const todos = await Todo.find({ user: req.userId }); 
         res.json(todos);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ message: 'Failed to retrieve todos.' });
     }
 };
 
@@ -19,11 +19,11 @@ const createTodo = async (req, res) => {
     }
 
     try {
-        const newTodo = new Todo({ description, date });
+        const newTodo = new Todo({ description, date, user: req.userId }); 
         await newTodo.save();
         res.status(201).json(newTodo);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ message: 'Failed to create todo.' });
     }
 };
 
@@ -37,13 +37,17 @@ const updateTodo = async (req, res) => {
     }
 
     try {
-        const todo = await Todo.findByIdAndUpdate(id, { description, date }, { new: true });
+        const todo = await Todo.findOneAndUpdate(
+            { _id: id, user: req.userId },
+            { description, date },
+            { new: true }
+        );
         if (!todo) {
             return res.status(404).json({ message: 'Todo not found.' });
         }
         res.json(todo);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ message: 'Failed to update todo.' });
     }
 };
 
@@ -52,13 +56,13 @@ const deleteTodo = async (req, res) => {
     const { id } = req.params;
 
     try {
-        const todo = await Todo.findByIdAndDelete(id);
+        const todo = await Todo.findOneAndDelete({ _id: id, user: req.userId }); 
         if (!todo) {
             return res.status(404).json({ message: 'Todo not found.' });
         }
-        res.json(todo);
+        res.json({ message: 'Todo deleted successfully.' });
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ message: 'Failed to delete todo.' });
     }
 };
 
@@ -67,7 +71,7 @@ const toggleTodo = async (req, res) => {
     const { id } = req.params;
 
     try {
-        const todo = await Todo.findById(id);
+        const todo = await Todo.findOne({ _id: id, user: req.userId }); 
         if (!todo) {
             return res.status(404).json({ message: 'Todo not found.' });
         }
@@ -76,7 +80,7 @@ const toggleTodo = async (req, res) => {
         await todo.save();
         res.json(todo);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ message: 'Failed to toggle todo status.' });
     }
 };
 
