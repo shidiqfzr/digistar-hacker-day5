@@ -31,19 +31,19 @@ Each todo item has the following properties:
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/yourusername/digistar-hacker-day4.git
+    git clone https://github.com/yourusername/digistar-hacker-day5.git
     ```
 
 2. **Navigate into the project directory:**
 
     ```bash
-    cd digistar-hacker-day4
+    cd digistar-hacker-day5
     ```
 
 3. **Install dependencies:**
 
     ```bash
-    npm install express mongoose nodemon dotenv
+    npm install express mongoose nodemon dotenv jsonwebtoken bcrypt validator
     ```
 
 4. **Create a `.env` file** (if needed for environment-specific settings):
