@@ -1,6 +1,7 @@
 const express = require('express');
 const { connectDB } = require('./config/db'); 
-const todoRoutes = require('./routes/todoRoutes');
+const todoRoute = require('./routes/todoRoute');
+const userRoute = require('./routes/userRoute');
 
 const app = express();
 app.use(express.json());
@@ -9,7 +10,10 @@ app.use(express.json());
 connectDB();
 
 // Use the Todo routes
-app.use('/todos', todoRoutes);
+app.use('/todos', todoRoute);
+
+// Use the User routes
+app.use('/users', userRoute); 
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

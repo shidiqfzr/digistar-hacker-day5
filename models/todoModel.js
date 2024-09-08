@@ -4,10 +4,12 @@ const mongoose = require('mongoose');
 const todoSchema = new mongoose.Schema({
     description: { type: String, required: true },
     date: { type: String, required: true },
-    is_checked: { type: Boolean, default: false}
+    is_checked: { type: Boolean, default: false }
 }, {
     timestamps: true
 });
 
 // Create and export the Todo model
-module.exports = mongoose.model('Todo', todoSchema);
+const Todo = mongoose.model('Todo', todoSchema);
+
+module.exports = Todo;

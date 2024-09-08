@@ -1,4 +1,4 @@
-const Todo = require('../models/Todo');
+const Todo = require('../models/todoModel');
 
 // Get all todos
 const getTodos = async (req, res) => {
